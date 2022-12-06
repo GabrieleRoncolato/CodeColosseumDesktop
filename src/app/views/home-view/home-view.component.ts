@@ -1,6 +1,7 @@
-import { Child, Command, open as ShellOpen } from '@tauri-apps/api/shell'
-import { open as DialogOpen } from '@tauri-apps/api/dialog';
 import { Component, OnInit, NgZone } from '@angular/core';
+// import { ElectronBridgeService, ElectronProcess, ElectronProcessDescriptor } from 'src/app/services/electron-bridge.service';
+import { Child, Command, open as ShellOpen } from '@tauri-apps/api/shell';
+import { open as DialogOpen } from '@tauri-apps/api/dialog';
 import { GAMES } from 'mock-games';
 import { Game } from 'src/app/Game';
 import { TagModule } from 'primeng/tag';
@@ -41,12 +42,14 @@ export class HomeViewComponent implements OnInit {
     console.log(`IN: ROCK\n`);
     this.refreshOutput();
   }
+
   async actionPaper() {
     await this.child?.write("PAPER\n");
     this.output += `IN: PAPER\n`;
     console.log(`IN: PAPER\n`);
     this.refreshOutput();
   }
+
   async actionScissor() {
     await this.child?.write("SCISSOR\n");
     this.output += `IN: SCISSOR\n`;
@@ -58,10 +61,8 @@ export class HomeViewComponent implements OnInit {
     this.zone.run(() => this.output += "")
   }
 
-
-
   async actionExec() {
-    console.log("EXEC!")
+    console.log("EXEC!");
     this.output = "";
     const command = new Command("sh", ["-c", `${this.filename} 3 1`]);
     command.stdout.on("data", (line: any) => {
