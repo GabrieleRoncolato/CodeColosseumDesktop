@@ -6,6 +6,7 @@ https://github.com/dariost/CodeColosseum
 ## Known bugs
 - Missing newline character for ("on", "data") callback on js api: an issue has been opened on the Tauri repo, a fix to this bug is currently undergoing review.
 - Executables can only be successfully launched when there are no space characters in the path: the behavior appears to be inconsistent under different operative systems, it looks like this behavior can be traced back to an incorrect implementation of the Tauri API, solving this bug might require opening a new issue on the Tauri repo.
+- The StdErr is currently shown just below the messages chat inside the game page, it would be appropriate to find a better way to show these error messages on the UI.
 
 ## Functionalities
 
